@@ -1,0 +1,14 @@
+
+.footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--line-gray);
+  font-size: 16px;
+  font-style: italic;
+  border-top: 1px solid var(--line-gray);
+}
+
+.footer a {
+  color: var(--line-gray);
+}
