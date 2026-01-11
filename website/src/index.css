@@ -2,12 +2,17 @@
 :root {
   --padding1: 30px;
   --padding2: 30px;
-  --bg-gray: #F5F2E8;
+  --padding3: 20px;
+  --bg-gray: #fff9de;
   --line-gray: #756f6d;
   --text-gray: #333;
 }
 
 * { box-sizing: border-box; }
+
+html {
+  filter: grayscale(0.70);
+}
 
 body {
   background: var(--bg-gray);
@@ -17,7 +22,6 @@ body {
   padding: var(--padding1);
   max-width: 1280px;
   margin: 0 auto;
-  filter: grayscale(0.5);
 }
 
 a {
@@ -28,7 +32,7 @@ a:hover {
   text-decoration: underline;
 }
 
-h1,h2 {
+h1,h2,h3,h4,p {
   margin: 0;
   padding: 0;
 }

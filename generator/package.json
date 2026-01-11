@@ -1,0 +1,20 @@
+{
+  "name": "generator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "index.js",
+  "author": "Ben Zenittini",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "ollama": "^0.6.3"
+  }
+}

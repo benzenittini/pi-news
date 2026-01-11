@@ -1,30 +1,36 @@
 import './App.css';
-import Entertainment from './Entertainment';
+import type { ArticleType } from './components/Article';
+import Entertainment, { type WotD } from './Entertainment';
 import Finance from './Finance';
 import Gossip from './Gossip';
 import Heading from './Heading';
-import TopStories, { type TopStory } from './TopStories';
+import TopStories from './TopStories';
 
-declare const articleContents: {
-  date: string;
-  topStories: TopStory[];
+declare const paper: {
+  date: string,
+  topStories: ArticleType[],
+  topics: ArticleType[],
+  jotd: string,
+  wotd: WotD,
+  finance: {
+    stocks: string[],
+    news: ArticleType[],
+  }
 };
 
 function App() {
 
   return (
     <>
-      <Heading date={articleContents.date}/>
+      <Heading date={paper.date}/>
 
-      <TopStories stories={articleContents.topStories} />
+      <TopStories stories={paper.topStories} />
 
-      <Finance />
+      <Finance stocks={paper.finance.stocks} news={paper.finance.news} />
 
-      <Entertainment />
+      <Entertainment jotd={paper.jotd} wotd={paper.wotd} articles={paper.topics} />
 
       <Gossip />
-
-      {/* <div style={{ width: '100%', height: '10px', marginBottom: '13px', boxShadow: '0px 13px 10px #bbb' }} /> */}
 
       <div className="footer">
         <span>Source: <a href="https://github.com/benzenittini/pi-news">github.com/benzenittini/pi-news</a></span>

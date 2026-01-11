@@ -1,0 +1,122 @@
+
+import ollama from 'ollama';
+
+const ollamaKeepAlive = '1h';
+
+
+async function submitRestCall(config: {
+    url: string,
+    method: 'get' | 'post' | 'put' | 'delete',
+    body?: object,
+    queryParams?: Record<string, string>,
+    headers?: Record<string, string>,
+}) {
+    const url = new URL(config.url);
+    for (const param in config.queryParams ?? {}) {
+        url.searchParams.append(param, config.queryParams![param]);
+    }
+
+    return fetch(url, {
+        method: config.method,
+        headers: config.headers ?? {},
+        body: config.body ? JSON.stringify(config.body) : undefined,
+    });
+}
+
+
+export async function getAJoke() {
+  const joke = await submitRestCall({
+    url: 'https://icanhazdadjoke.com/',
+    method: 'get',
+    headers: { 'Accept': 'application/json' },
+  });
+  return (await joke.json() as { id: string, joke: string, status: number }).joke;
+}
+
+export async function getWotD(seed: string) {
+    const parseResponse = await ollama.generate({
+        model: 'ministral-3:14b',
+        format: {
+          type: 'object',
+          properties: {
+            'word': { type: 'string' },
+            'partOfSpeech': { type: 'string' },
+            'definition': { type: 'string' },
+          },
+          required: ['word', 'partOfSpeech', 'definition'],
+        },
+        keep_alive: ollamaKeepAlive,
+        stream: false,
+        prompt: `Choose a good "word of the day" using the following news articles as inspiration, making sure to provide a part of speech and one-sentence definition for the word: ${seed}`
+    });
+    return JSON.parse(parseResponse.response) as { word: string, partOfSpeech: string, definition: string };
+}
+
+export async function promptAI(apiKey: string, prompt: string) {
+  const response = await submitRestCall({
+      method: 'post',
+      url: 'https://api.search.brave.com/res/v1/chat/completions',
+      body: {
+        stream: false,
+        messages: [{"role": "user", "content": prompt}],
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Subscription-Token': apiKey,
+      },
+  });
+  return response.json();
+}
+
+export async function reformatNews(news: string) {
+    const parseResponse = await ollama.generate({
+        model: 'ministral-3:14b',
+        format: {
+          type: 'object',
+          properties: {
+            'articles': {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                      'title': { type: 'string' },
+                      'content': { type: 'string' },
+                    },
+                    required: [ 'title', 'content' ],
+                }
+            }
+          },
+          required: ['articles'],
+        },
+        keep_alive: ollamaKeepAlive,
+        stream: false,
+        prompt: `Extract the news articles from the following content: ${news}`,
+    });
+    return JSON.parse(parseResponse.response).articles as { title: string, content: string }[];
+}
+
+export async function filterUnrelatedTopics(articles: { title: string, content: string }[], topics: string) {
+  const validArticles = [];
+  for (const article of articles) {
+    const relationResponse = await ollama.generate({
+        model: 'ministral-3:14b',
+        format: {
+          type: 'object',
+          properties: {
+            'related': { type: 'boolean', }
+          },
+          required: ['related'],
+        },
+        keep_alive: ollamaKeepAlive,
+        stream: false,
+        prompt: `Given the topic list: [${topics}], is the following article related to at least one of these topics? ${article.content}`,
+    });
+
+    const isRelated = JSON.parse(relationResponse.response).related as boolean;
+    if (isRelated) {
+      validArticles.push(article);
+    }
+  }
+
+  return validArticles;
+}

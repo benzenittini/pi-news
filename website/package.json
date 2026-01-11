@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Ben Zenittini",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,7 +13,8 @@
   },
   "dependencies": {
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-ts-tradingview-widgets": "^1.2.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

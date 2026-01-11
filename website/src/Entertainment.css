@@ -1,0 +1,13 @@
+
+.infobox {
+    border: 1px dotted var(--line-gray);
+    border-radius: 12px;
+    padding: var(--padding3);
+}
+
+.infobox h4 {
+    position: absolute;
+    transform: translateY(calc(calc(-1 * var(--padding3)) - 50%));
+    background: var(--bg-gray);
+    padding: 0 8px;
+}
