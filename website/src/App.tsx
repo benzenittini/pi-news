@@ -2,7 +2,6 @@ import './App.css';
 import type { ArticleType } from './components/Article';
 import Entertainment, { type WotD } from './Entertainment';
 import Finance from './Finance';
-import Gossip from './Gossip';
 import Heading from './Heading';
 import TopStories from './TopStories';
 
@@ -29,8 +28,6 @@ function App() {
       <Finance stocks={paper.finance.stocks} news={paper.finance.news} />
 
       <Entertainment jotd={paper.jotd} wotd={paper.wotd} articles={paper.topics} />
-
-      <Gossip />
 
       <div className="footer">
         <span>Source: <a href="https://github.com/benzenittini/pi-news">github.com/benzenittini/pi-news</a></span>
