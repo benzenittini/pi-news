@@ -56,10 +56,10 @@ npm run build
 node --env-file=.env ./dist/index.js
 ```
 
-Now create a cronjob that executes that last node command every day at your desired time (6:00am below). You can add/edit cronjobs by running: `crontab -e`, then adding the following line to the bottom of the file, adjusting the path appropriately for your system.
+Now create a cronjob that executes that last node command every day at your desired time (6:00am below). You can add/edit cronjobs by running: `crontab -e`, then adding the following line to the bottom of the file, adjusting both paths appropriately for your system.
 
 ```
-0 6 * * * cd /home/ben/git/pi-news/generator && node --env-file=.env ./dist/index.js
+0 6 * * * cd /home/ben/git/pi-news/generator && /home/ben/.nvm/versions/node/v25.3.0/bin/node --env-file=.env ./dist/index.js
 ```
 
 Lastly, we'll build the website, then install and run the web server to host the newspaper:
