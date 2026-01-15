@@ -7,6 +7,7 @@ import TopStories from './TopStories';
 
 declare const paper: {
   date: string,
+  costCents: string,
   topStories: ArticleType[],
   topics: ArticleType[],
   jotd: string,
@@ -21,6 +22,14 @@ function App() {
 
   return (
     <>
+      <span style={{
+        position: 'absolute',
+        right: 'var(--padding1)',
+        top: 'var(--padding1)',
+        color: 'var(--text-gray)',
+        fontStyle: 'italic',
+        }}>{paper.costCents}&cent;</span>
+
       <Heading date={paper.date}/>
 
       <TopStories stories={paper.topStories} />

@@ -41,6 +41,10 @@ if (!TOPICS) {
 const today = new Date();
 const date = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+// Just some fun cost metrics
+let tokenCount = 0;
+let requestCount = 0;
+
 // -- Top Stories --
 
 console.log("\n== TOP STORIES ==");
@@ -48,7 +52,9 @@ console.log("Querying Brave's Search API...");
 const news = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_stories.json', 'utf-8'))
   : await promptAI(BRAVE_API_KEY, "Summarize the top 3 news stories for the past 24 hours, giving each a title followed by a 3-8 sentence summary.");
-fs.writeFileSync("./debug_stories.json", JSON.stringify(news), 'utf-8');
+fs.writeFileSync("./debug_stories.json", JSON.stringify(news, null, 2), 'utf-8');
+tokenCount += news.usage.total_tokens;
+requestCount++;
 
 console.log("Reformatting response...");
 const topStories = await reformatNews(news.choices[0].message.content);
@@ -62,7 +68,9 @@ console.log("Querying Brave's Search API...");
 const topicNews = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_topics.json', 'utf-8'))
   : await promptAI(BRAVE_API_KEY, `Summarize any news that occurred in the past 24 hours related to the following topics, giving each a brief title followed by a 3-8 sentence summary: ${TOPICS}`);
-fs.writeFileSync("./debug_topics.json", JSON.stringify(topicNews), 'utf-8');
+fs.writeFileSync("./debug_topics.json", JSON.stringify(topicNews, null, 2), 'utf-8');
+tokenCount += topicNews.usage.total_tokens;
+requestCount++;
 
 console.log("Reformatting response...");
 let topics = await reformatNews(topicNews.choices[0].message.content);
@@ -79,7 +87,9 @@ console.log("Querying Brave's Search API...");
 const financeNews = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_finances.json', 'utf-8'))
   : await promptAI(BRAVE_API_KEY, `Summarize any news that occurred in the past 24 hours related to the following stocks or any related stocks, giving each a brief title followed by a 3-8 sentence summary: ${STOCKS}`);
-fs.writeFileSync("./debug_finances.json", JSON.stringify(financeNews), 'utf-8');
+fs.writeFileSync("./debug_finances.json", JSON.stringify(financeNews, null, 2), 'utf-8');
+tokenCount += financeNews.usage.total_tokens;
+requestCount++;
 
 console.log("Reformatting response...");
 let stockArticles = await reformatNews(financeNews.choices[0].message.content);
@@ -96,7 +106,9 @@ console.log("Querying JotD...");
 const jotd = await getAJoke();
 
 // -- Write the Newspaper --
-const newspaper = { date, topStories, topics, jotd, wotd, finance };
+const costCents = Math.round((400 * requestCount / 1000) + (500 * tokenCount / 1000000)); // $4.00 per 1000 requests, $5.00 per million tokens.
+const newspaper = { date, costCents, topStories, topics, jotd, wotd, finance };
 fs.writeFileSync("./debug_newspaper.json", 'const paper = ' + JSON.stringify(newspaper, null, 2), 'utf-8');
+fs.writeFileSync("../website/dist/data.js", 'const paper = ' + JSON.stringify(newspaper, null, 2), 'utf-8');
 
 console.log("\nDone!\n");

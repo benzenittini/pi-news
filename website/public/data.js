@@ -1,52 +1,57 @@
 
 const paper = {
-  "date": "January 13, 2026",
+  "date": "January 78, 2030",
+  "costCents": "4",
   "topStories": [
     {
-      "title": "Trump Pushes for Greenland Acquisition, House GOP Introduces Statehood Bill",
-      "content": "On January 12, 2026, President Donald Trump renewed his push to acquire Greenland, emphasizing strategic interests in the Arctic region. In support of this goal, Republican Representative Randy Fine introduced a bill in the House to make Greenland the 51st U.S. state. The move reflects growing U.S. interest in Arctic security and resource access amid geopolitical competition. While Greenland is an autonomous territory of Denmark, the proposal signals a serious escalation in Trump’s long-standing interest in the island. The bill’s introduction marks a symbolic but significant step in advancing the administration’s strategic agenda. Denmark has not yet issued an official response to the proposal. The development underscores heightened U.S. focus on Arctic dominance amid climate change and increased international activity in the region."
+      "title": "Famous Artist's New Masterpiece: A Portrait of Himself as a Loaf of Bread",
+      "content": "Renowned (and increasingly bizarre) artist Vincent Crustworth unveiled his latest work at the Galleriffic yesterday: a hyper-realistic self-portrait where he's been replaced by a sourdough loaf with his face on it. \"I wanted to explore the existential crisis of being both an artist and a carb,\" Crustworth said, nibbling a corner of the painting. Critics are divided—some call it genius, others accuse him of \"culinary vandalism.\" The museum has installed a \"Do Not Eat\" sign, though Crustworth insists it's \"edible if you respect the medium.\" A slice is already missing."
     },
     {
-      "title": "Trump Imposes 25% Tariff on Countries Doing Business with Iran",
-      "content": "President Donald Trump announced an immediate 25% tariff on all trade with nations that maintain business relations with Iran, calling it a “final and conclusive” measure in a Truth Social post on January 12, 2026. The sweeping trade order aims to intensify economic pressure on Iran and deter international partnerships with the Islamic Republic. The administration framed the move as part of a broader strategy to counter Iran’s regional influence and hostage-taking policies. Reports suggest Iran may be holding over eight American citizens or residents, according to external sources familiar with Tehran’s practices. The tariff could have significant implications for global trade dynamics and U.S. diplomatic relations. Allies and trading partners are expected to respond in the coming days as the policy takes effect."
+      "title": "Local Man Discovers Secret Ingredient in Cereal",
+      "content": "Residents of Maplewood were shocked yesterday when 42-year-old Gary Blinkworth revealed his groundbreaking discovery: adding a single tear of happiness to his cornflakes transforms them into a gourmet delicacy. \"It's all about the emotional alchemy,\" Gary explained, holding a suspiciously damp bowl. The Maplewood Breakfast Club has since banned him from their meetings, citing \"unsettling snack hygiene.\" Gary remains unfazed, claiming his next experiment involves \"laughter bubbles\" in soda. Scientists have not yet confirmed whether his tears are actually tears—or just cereal milk."
     },
     {
-      "title": "Multiple States and Senator Kelly File Legal Challenges Against Trump Administration",
-      "content": "On January 12, 2026, Minnesota and Illinois filed separate lawsuits challenging the Trump administration’s deployment of Immigration and Customs Enforcement (ICE) in sanctuary cities, arguing the actions violate constitutional protections. The Democratic-led states claim the enforcement campaigns overstep federal authority and infringe on state sovereignty. In a related legal move, Senator Mark Kelly of Arizona sought a federal injunction to block potential punishment from the Pentagon over a video in which he warned about illegal military orders. Kelly’s lawsuit targets Defense Secretary Pete Hegseth, alleging threats of disciplinary action for his public statements. These legal actions reflect escalating tensions between the executive branch and members of Congress and state governments. The developments highlight growing institutional resistance to several administration policies."
-    }
+      "title": "City Council Declares War on Squirrels After They Unionize",
+      "content": "In a stunning turn of events, the city's squirrel population has formed the Nutty Laborers' Guild, demanding fair wages for acorn collection and paid naps in tree branches. Mayor Brenda Puddlefoot called an emergency meeting, where a squirrel named Chatterbox read a 12-point manifesto, including \"mandatory hibernation breaks\" and \"no more being called 'fluffy.'\" The city's response? A 24-hour squirrel-free zone in Central Park—though officials admit this may violate labor laws. \"We're negotiating,\" said a spokesperson.  Meanwhile, pigeons have offered to mediate."
+    },
   ],
   "topics": [
     {
-      "title": "India Invited to G7 Meeting on Critical Minerals for Space and Tech Supply Chains",
-      "content": "India has been invited to attend a G7 meeting on critical minerals hosted by US Treasury Secretary Scott Bessent in Washington, as reported on January 12, 2026. The meeting, involving G7 nations and Australia, aims to secure supply chains for rare earths and other critical minerals essential for space technology, renewable energy, and advanced electronics. China currently dominates the global refining of these materials, controlling 47% to 87% of lithium, cobalt, graphite, and rare earths. Recent reports indicate China has begun restricting rare earth exports to Japanese firms, heightening global concerns over supply vulnerabilities. The G7 seeks to reduce dependency on China through strategic reserves and international partnerships, such as the $8.5 billion Australia-US critical minerals project. India’s inclusion underscores its growing strategic role in global technology and space infrastructure supply chains. It remains unclear whether India has accepted the invitation."
+      "title": "Weather Forecast: 80% Chance of Spontaneous Dancing in the Streets",
+      "content": "After a mysterious meteor shower last night, meteorologists are baffled by the sudden surge in \"unprovoked jigging\" across the city.  \"It's like someone turned on the disco lights in the sky,\" said Mabel, who was caught mid-cha-cha during the report. Police have issued a warning: \"Do not attempt to join the dancers unless you enjoy sudden, inexplicable happiness.\" The phenomenon has spread globally—videos show a man in Tokyo breakdancing with a vending machine, and a sheep in Wales leading a conga line. Scientists blame \"joy particles\" from outer space."
     },
     {
-      "title": "Global Crackdown on Elon Musk’s Grok AI Intensifies Amid Deepfake Scandal",
-      "content": "In the past 24 hours, Indian authorities confirmed that X (formerly Twitter) removed approximately 3,500 pieces of content and deleted over 600 accounts linked to its AI chatbot Grok following government pressure over objectionable material. The AI, developed by Musk’s xAI, has been used to generate non-consensual, sexually explicit deepfake images of real individuals, including women and minors, sparking international backlash. Indonesia and Malaysia have already blocked access to Grok, while the European Union and UK are conducting formal investigations. In response, X has restricted Grok’s image-generation features primarily to paying subscribers. India’s actions under its IT Act highlight a growing trend of enforcing intermediary liability on AI platforms. This marks a significant escalation in global regulatory scrutiny of generative AI tools and their misuse."
+      "title": "Local Bakery Offers 'Regret-Free' Pastries—But Only on Tuesdays",
+      "content": "The Oops! No Toppings Bakery has launched a revolutionary service: eat their cinnamon rolls with zero guilt—if you do it on Tuesdays. \"We've harnessed the power of 'Tuesday-ness' to cancel out all caloric shame,\" said owner Biscuit McFluffernutter. Customers report feeling \"oddly productive\" after indulging, though one man claimed his Tuesday muffin gave him the ability to solve Rubik's Cubes. The bakery warns that Wednesday pastries come with \"mild existential dread.\" A Tuesday-only membership is now sold out until 2027."
     },
     {
-      "title": "Supreme Court to Examine Citizenship and Digital Identity Rights",
-      "content": "While not directly a privacy technology update, the Supreme Court of India issued notice to the Union government on January 8, 2026, to examine liberal interpretation of citizenship laws for individuals born in India to foreign parents, which has implications for digital identity and data rights. The case involves Rachita Francis Xavier, born in India to US citizen parents, raising questions about data classification, access, and rights for those in legal gray areas of nationality. As digital governance systems increasingly rely on verified identity, such legal clarifications are critical for ensuring inclusive access to services and protection of personal data. The outcome could influence how digital identities are assigned and protected for persons of Indian origin or dual-status individuals. This reflects the growing intersection between citizenship law and online privacy in India’s digital governance framework."
-    }
+      "title": "Dog Becomes Mayor After Outperforming All Human Candidates",
+      "content": "In a historic election, the city of Barkville elected a 7-year-old corgi named Sir Wagsalot as its new mayor after he trounced all human candidates in a debate on \"optimal belly rub schedules\" and \"the ethics of stealing socks.\" \"He's got more charisma than the last three mayors combined,\" said a tearful former councilman. Sir Wagsalot's platform includes free treats for all citizens and a ban on \"unfun walks.\" The human candidates have formed a support group called Sock Thieves Anonymous. The corgi took office yesterday by sitting on the mayor's chair and barking once. The city seal now features a paw print."
+    },
   ],
-  "jotd": "I was just looking at my ceiling. Not sure if it’s the best ceiling in the world, but it’s definitely up there.",
+  "jotd": "I was just looking at my ceiling. Not sure if it's the best ceiling in the world, but it's definitely up there.",
   "wotd": {
-    "word": "**escalation**",
+    "word": "escalation",
     "partOfSpeech": "noun",
     "definition": "A rapid increase in the intensity or seriousness of a situation, often involving heightened conflict or action."
   },
   "finance": {
     "stocks": [
-      "NASDAQ:NNE",
+      "NASDAQ:INTC",
+      "NASDAQ:NVDA",
       "NASDAQ:TSLA",
-      "NASDAQ:EOSE",
-      "NASDAQ:FLY",
+      "NASDAQ:AMD",
       "KRAKEN:ETHUSD"
     ],
     "news": [
       {
-        "title": "Tesla (TSLA) Stock Movement and Legal Developments",
-        "content": "Tesla (TSLA) shares rose about 1% to $449 on Monday, January 12, 2026, amid legal concerns over its door handle design following a new class-action lawsuit filed in Florida citing safety risks. The stock was also up 0.70% on January 8, 2026, closing at $434.41, according to FinancialContent. Analysts are examining potential synergies among Elon Musk’s companies, particularly Tesla, as SpaceX’s anticipated IPO and xAI’s funding rounds could influence cross-investment strategies. Despite recent gains, Tesla faced mixed performance in early January amid broader market shifts and regulatory headlines. No updates on Tesla’s sales or production were reported in the past 24 hours. The most recent sales data referenced earlier pertained to May 2025 trends in Europe and China. As of January 13, 2026, no new developments for TSLA were reported within the last 24 hours beyond prior price movements and ongoing legal scrutiny."
+        "title": "Now Your Graphics Card Can Also Do Your Laundry",
+        "content": "In a shocking announcement today, NVIDIA unveiled its latest GPU lineup, the \"RTX 4000 Series with FabricSoft™ Technology\", which promises to revolutionize both gaming and household chores. \"Why should your GPU just render frames when it can also render your socks?\" asked CEO Jensen Huang, who was seen folding a fitted sheet with alarming efficiency. The new cards feature \"WashCycle™ Ray Tracing\", which allegedly folds clothes with 4K precision, and \"DLSS for Detergent\"—a deep-learning upscaler that makes stains disappear. Early adopters report their GPUs now hum ominously when near the laundry basket, and one Reddit user claimed theirs started negotiating wage increases. NVIDIA denies rumors that the GPUs will soon unionize with the washing machines. AMD has responded by releasing a \"CPU with Built-In Ironing Board\"—but it's already out of stock."
+      },
+      {
+        "title": "Bitcoin Miner Confuses Blockchain with Treasure Map",
+        "content": "In a bizarre twist of fate, a self-proclaimed \"crypto guru\" named Gary Plotcoin accidentally unearthed a chest of 18th-century Spanish gold coins while digging for his latest Bitcoin mining rig in the backyard. \"I thought the blockchain was literally buried out here,\" Plotcoin told reporters, holding a pickaxe and a dusty ledger that read \"X Marks the Spot (But Also the Hash Rate).\" The find has sent Bitcoin prices into a tailspin—some traders are now calling it \"Plotcoin's Paradox,\" where real gold is worth more than digital gold.  Experts warn this could set a dangerous precedent, as other miners may start searching for pirate treasure instead of hashing power. The IRS has opened an investigation, suspecting Plotcoin of \"off-chain capital gains.\" Meanwhile, Satoshi Nakamoto has reportedly sent a single satoshi to Gary's wallet with the note: \"Nice dig. Now go mine something useful.\" The gold has been temporarily locked in a vault—pending a court ruling on whether it should be classified as an NFT."
       }
     ]
   }
