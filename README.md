@@ -50,7 +50,9 @@ cd ../generator  # if you're not already here
 npm run build
 
 # Whenever you want to run the generator to create a new newspaper, execute this command. We'll set
-# this up with a cronjob next. It's up to you if you want to run it now.
+# this up with a cronjob next. It's up to you if you want to run it now. Fair warning: If you're
+# running this on a raspberry pi, it will take around an hour. On a beefy dev machine, then just a
+# few seconds.
 node --env-file=.env ./dist/index.js
 ```
 
@@ -73,6 +75,15 @@ npm install --global http-server
 # Run the web server (with a disabled file cache).
 cd ./dist
 nohup http-server -c-1 &
+
+# To stop the server at a later point, you can grep for the process:
+ps -ef | grep http-server
+#
+# ...which returns something like:
+#   ben        20888       1  0 21:00 ?        00:00:00 http-server
+#
+# ...then you can kill it using the ID in that line:
+kill 20888
 ```
 
 # Development

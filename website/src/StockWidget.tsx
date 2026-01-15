@@ -4,6 +4,9 @@ type Props = {
   stocks: string[],
 };
 
+// Widget hosted by: https://www.tradingview.com/widget-docs/widgets/watchlists/market-overview/
+// React component by: https://tradingview-widgets.jorrinkievit.xyz/docs/components/MarketOverview/
+
 function StockWidget({ stocks }: Props) {
 
   return (

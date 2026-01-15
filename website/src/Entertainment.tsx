@@ -31,7 +31,8 @@ function Entertainment({ jotd, wotd, articles }: Props) {
         articles={articles}
         lockedHeight={2}
         lockedComponents={[
-          (<div key="weather" style={{ maxWidth: '329px' }}>
+          // "Responsive" weather widget from: https://weatherwidget.org/
+          (<div key="weather" style={{ maxWidth: '329px', marginLeft: '30px', marginRight: '30px' }}>
             <div id="ww_5eb47bc65c244" {...weatherConfig}>More forecasts: <a href="https://oneweather.org/new_york_city/30_days/" id="ww_5eb47bc65c244_u" target="_blank">Weather New York 30 days</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_5eb47bc65c244"></script>
           </div>),
 

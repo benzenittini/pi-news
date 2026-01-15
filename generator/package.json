@@ -15,6 +15,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "ollama": "^0.6.3"
+    "undici": "^7.18.2"
   }
 }

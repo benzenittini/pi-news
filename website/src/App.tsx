@@ -27,7 +27,11 @@ function App() {
         right: 'var(--padding1)',
         top: 'var(--padding1)',
         color: 'var(--text-gray)',
-        fontStyle: 'italic',
+        padding: '10px',
+        border: '1px solid var(--text-gray)',
+        borderRadius: '50%',
+        opacity: '0.4',
+        transform: 'rotate(-10deg)',
         }}>{paper.costCents}&cent;</span>
 
       <Heading date={paper.date}/>

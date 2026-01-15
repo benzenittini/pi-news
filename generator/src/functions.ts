@@ -1,8 +1,9 @@
 
-import ollama from 'ollama';
+import { Agent, fetch } from 'undici';
 
 const ollamaKeepAlive = '1h';
 
+const restTimeout = 1000 * 60 * 60 * 2; // 2 hour timeout b/c ollama on pi is slowwww
 
 async function submitRestCall(config: {
     url: string,
@@ -20,6 +21,7 @@ async function submitRestCall(config: {
         method: config.method,
         headers: config.headers ?? {},
         body: config.body ? JSON.stringify(config.body) : undefined,
+        dispatcher: new Agent({ headersTimeout: restTimeout, connectTimeout: restTimeout, bodyTimeout: restTimeout }),
     });
 }
 
@@ -34,7 +36,10 @@ export async function getAJoke() {
 }
 
 export async function getWotD(seed: string) {
-    const parseResponse = await ollama.generate({
+  const parseResponse: any = await submitRestCall({
+    url: 'http://localhost:11434/api/generate',
+    method: 'post',
+    body: {
         model: 'ministral-3:14b',
         format: {
           type: 'object',
@@ -48,8 +53,9 @@ export async function getWotD(seed: string) {
         keep_alive: ollamaKeepAlive,
         stream: false,
         prompt: `Choose a good "word of the day" using the following news articles as inspiration, making sure to provide a part of speech and one-sentence definition for the word: ${seed}`
-    });
-    return JSON.parse(parseResponse.response) as { word: string, partOfSpeech: string, definition: string };
+    }
+  }).then(r => r.json());
+  return JSON.parse(parseResponse.response) as { word: string, partOfSpeech: string, definition: string };
 }
 
 export async function promptAI(apiKey: string, prompt: string) {
@@ -69,36 +75,43 @@ export async function promptAI(apiKey: string, prompt: string) {
 }
 
 export async function reformatNews(news: string) {
-    const parseResponse = await ollama.generate({
-        model: 'ministral-3:14b',
-        format: {
-          type: 'object',
-          properties: {
-            'articles': {
-                type: 'array',
-                items: {
-                    type: 'object',
-                    properties: {
-                      'title': { type: 'string' },
-                      'content': { type: 'string' },
-                    },
-                    required: [ 'title', 'content' ],
-                }
-            }
-          },
-          required: ['articles'],
+  const parseResponse: any = await submitRestCall({
+    url: 'http://localhost:11434/api/generate',
+    method: 'post',
+    body: {
+      model: 'ministral-3:14b',
+      format: {
+        type: 'object',
+        properties: {
+          'articles': {
+              type: 'array',
+              items: {
+                  type: 'object',
+                  properties: {
+                    'title': { type: 'string' },
+                    'content': { type: 'string' },
+                  },
+                  required: [ 'title', 'content' ],
+              }
+          }
         },
-        keep_alive: ollamaKeepAlive,
-        stream: false,
-        prompt: `Extract the news articles from the following content: ${news}`,
-    });
-    return JSON.parse(parseResponse.response).articles as { title: string, content: string }[];
+        required: ['articles'],
+      },
+      keep_alive: ollamaKeepAlive,
+      stream: false,
+      prompt: `Extract the news articles from the following content: ${news}`,
+    }
+  }).then(r => r.json());
+  return JSON.parse(parseResponse.response).articles as { title: string, content: string }[];
 }
 
 export async function filterUnrelatedTopics(articles: { title: string, content: string }[], topics: string) {
   const validArticles = [];
   for (const article of articles) {
-    const relationResponse = await ollama.generate({
+    const relationResponse: any = await submitRestCall({
+      url: 'http://localhost:11434/api/generate',
+      method: 'post',
+      body: {
         model: 'ministral-3:14b',
         format: {
           type: 'object',
@@ -110,7 +123,8 @@ export async function filterUnrelatedTopics(articles: { title: string, content: 
         keep_alive: ollamaKeepAlive,
         stream: false,
         prompt: `Given the topic list: [${topics}], is the following article related to at least one of these topics? ${article.content}`,
-    });
+      }
+    }).then(r => r.json());
 
     const isRelated = JSON.parse(relationResponse.response).related as boolean;
     if (isRelated) {
