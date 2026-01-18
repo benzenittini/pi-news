@@ -102,7 +102,10 @@ export async function reformatNews(news: string) {
       prompt: `Extract the news articles from the following content: ${news}`,
     }
   }).then(r => r.json());
-  return JSON.parse(parseResponse.response).articles as { title: string, content: string }[];
+  const articles = JSON.parse(parseResponse.response).articles as { title: string, content: string }[];
+  return (articles.length === 0)
+    ? { content: news }
+    : articles;
 }
 
 export async function filterUnrelatedTopics(articles: { title: string, content: string }[], topics: string) {

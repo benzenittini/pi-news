@@ -1,11 +1,11 @@
 import './App.css'
-import type { ArticleType } from './components/Article';
+import type { ArticleError, ArticleType } from './components/Article';
 import ColumnLayout from './components/ColumnLayout';
 import StockWidget from './StockWidget';
 
 type Props = {
   stocks: string[],
-  news: ArticleType[],
+  news: ArticleType[] | ArticleError,
 }
 
 function Finance({ stocks, news }: Props) {

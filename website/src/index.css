@@ -4,6 +4,7 @@
   --padding2: 30px;
   --padding3: 20px;
   --bg-gray: #fff9de;
+  --error-shade: rgba(0, 0, 0, 0.05);
   --line-gray: #756f6d;
   --text-gray: #333;
 }
@@ -32,7 +33,7 @@ a:hover {
   text-decoration: underline;
 }
 
-h1,h2,h3,h4,p {
+h1,h2,h3,h4,p,pre {
   margin: 0;
   padding: 0;
 }

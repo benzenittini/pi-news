@@ -1,5 +1,5 @@
 import './App.css';
-import type { ArticleType } from './components/Article';
+import type { ArticleError, ArticleType } from './components/Article';
 import Entertainment, { type WotD } from './Entertainment';
 import Finance from './Finance';
 import Heading from './Heading';
@@ -8,13 +8,13 @@ import TopStories from './TopStories';
 declare const paper: {
   date: string,
   costCents: string,
-  topStories: ArticleType[],
-  topics: ArticleType[],
+  topStories: ArticleType[] | ArticleError,
+  topics: ArticleType[] | ArticleError,
   jotd: string,
   wotd: WotD,
   finance: {
     stocks: string[],
-    news: ArticleType[],
+    news: ArticleType[] | ArticleError,
   }
 };
 
@@ -22,13 +22,18 @@ function App() {
 
   return (
     <>
+      {/* Lol, never have I ever had this many styles defined inline. */}
       <span style={{
         position: 'absolute',
         right: 'var(--padding1)',
         top: 'var(--padding1)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '50px',
+        height: '50px',
         color: 'var(--text-gray)',
-        padding: '10px',
-        border: '1px solid var(--text-gray)',
+        border: '1px dotted var(--text-gray)',
         borderRadius: '50%',
         opacity: '0.4',
         transform: 'rotate(-10deg)',

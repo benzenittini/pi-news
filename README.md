@@ -38,6 +38,8 @@ BRAVE_API_KEY="(redacted)"
 TOPICS="space, computer programming, technology, online privacy"
 
 STOCKS="NASDAQ:INTC, NASDAQ:NVDA, NASDAQ:TSLA, NASDAQ:AMD, KRAKEN:ETHUSD"
+
+STOCK_TOPICS="Intel Corporation (NNE), Nvidia (NVDA), Tesla (TSLA), AMD (AMD), Ethereum (ETH)"
 ```
 
 # Hosting

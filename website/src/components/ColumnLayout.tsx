@@ -1,9 +1,9 @@
 
-import type { ArticleType } from './Article';
+import type { ArticleError, ArticleType } from './Article';
 import Article from './Article';
 
 type Props = {
-  articles: ArticleType[],
+  articles: ArticleType[] | ArticleError,
   lockedComponents?: React.ReactNode[],
   /**
    * Estimate for the number of half-articles the locked components take up in total.
@@ -15,8 +15,27 @@ type Props = {
 
 function ColumnLayout({ articles, lockedComponents = [], lockedHeight = 0, invert = false }: Props) {
 
+  const errorMessage = Array.isArray(articles) ? null : articles.content;
+
+  if (errorMessage) {
+    return (
+      <div style={{ display: 'flex', gap: 'var(--padding1)' }}>
+        <div style={{ flex: invert ? '1' : '2', display: 'flex', gap: 'var(--padding1)', flexDirection: 'column' }}>
+          {invert && lockedComponents}
+          {!invert && <pre style={{ textWrap: 'wrap', background: 'var(--error-shade)', padding: '20px', borderRadius: '12px' }}>{errorMessage}</pre>}
+        </div>
+
+        <div style={{ flex: invert ? '2' : '1', display: 'flex', flexDirection: 'column', gap: 'var(--padding2)' }}>
+          {!invert && lockedComponents}
+          {invert && <pre style={{ textWrap: 'wrap', background: 'var(--error-shade)', padding: '20px', borderRadius: '12px' }}>{errorMessage}</pre>}
+        </div>
+      </div>
+    );
+  }
+
   // First "lockedHeight*2" articles go in the left column. All others are split 2 to 1.
-  const { left, right } = articles.reduce((acc, item, i) => {
+  const arts = articles as ArticleType[];
+  const { left, right } = arts.reduce((acc, item, i) => {
     if (i < lockedHeight) {
       acc.left.push(item);
     } else if ((i - lockedHeight) % 3 == 2) {
@@ -26,6 +45,7 @@ function ColumnLayout({ articles, lockedComponents = [], lockedHeight = 0, inver
     }
     return acc;
   }, { left: [], right: [] } as {left: ArticleType[], right: ArticleType[]});
+
   const leftColumn  = invert ? right : left;
   const rightColumn = invert ? left  : right;
 

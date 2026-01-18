@@ -1,7 +1,7 @@
 
 const paper = {
   "date": "January 78, 2030",
-  "costCents": "4",
+  "costCents": "10",
   "topStories": [
     {
       "title": "Famous Artist's New Masterpiece: A Portrait of Himself as a Loaf of Bread",

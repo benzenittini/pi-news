@@ -4,6 +4,11 @@ export type ArticleType = {
   content: string;
 };
 
+
+export type ArticleError = {
+  content: string;
+}
+
 export type Props = {
   article: ArticleType;
   columns?: number;

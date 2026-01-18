@@ -1,9 +1,9 @@
 import './App.css'
-import { type ArticleType } from './components/Article';
+import { type ArticleError, type ArticleType } from './components/Article';
 import ColumnLayout from './components/ColumnLayout';
 
 type Props = {
-  stories: ArticleType[];
+  stories: ArticleType[] | ArticleError;
 };
 
 function TopStories({ stories }: Props) {

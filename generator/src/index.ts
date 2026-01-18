@@ -27,6 +27,12 @@ if (!STOCKS) {
   process.exit(1);
 }
 
+const STOCK_TOPICS = process.env.STOCK_TOPICS;
+if (!STOCK_TOPICS) {
+  console.log("A list of 'STOCK_TOPICS' must be provided to the node environment.");
+  process.exit(1);
+}
+
 const TOPICS = process.env.TOPICS;
 if (!TOPICS) {
   console.log("A list of 'TOPICS' must be provided to the node environment.");
@@ -51,7 +57,24 @@ console.log("\n== TOP STORIES ==");
 console.log("Querying Brave's Search API...");
 const news = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_stories.json', 'utf-8'))
-  : await promptAI(BRAVE_API_KEY, "Summarize the top 3 news stories for the past 24 hours, giving each a title followed by a 3-8 sentence summary.");
+  : await promptAI(BRAVE_API_KEY,
+`Task: Summarize the top 3 news stories from the past 24 hours.
+
+Requirements:
+- Select the 3 most significant/impactful stories globally
+- Only include stories with new developments in the past 24 hours
+- Avoid: opinion pieces, editorials, or unverified reports
+- Cover diverse topics (politics, business, technology, etc.)
+- For each story, format as:
+  * Clear, descriptive title
+  * 5-8 sentence summary including:
+    - What happened
+    - Key parties/entities involved
+    - Why it's significant
+    - Current status/implications
+- If no significant news exists for a topic in the timeframe, note this briefly
+- Prioritize stories by impact, relevance, and newsworthiness`
+);
 fs.writeFileSync("./debug_stories.json", JSON.stringify(news, null, 2), 'utf-8');
 tokenCount += news.usage.total_tokens;
 requestCount++;
@@ -67,7 +90,23 @@ console.log("\n== TOPICS OF INTEREST ==");
 console.log("Querying Brave's Search API...");
 const topicNews = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_topics.json', 'utf-8'))
-  : await promptAI(BRAVE_API_KEY, `Summarize any news that occurred in the past 24 hours related to the following topics, giving each a brief title followed by a 3-8 sentence summary: ${TOPICS}`);
+  : await promptAI(BRAVE_API_KEY,
+`Task: Summarize recent news (past 24 hours) for the following topics.
+
+Topics: ${TOPICS}
+
+Requirements:
+- Only include developments from the past 24 hours
+- Provide balanced coverage across all topics (no single topic should dominate)
+- For each news item, format as:
+  * Brief descriptive title
+  * 5-8 sentence summary covering:
+    - What happened
+    - Key parties/entities involved
+    - Why it's relevant to the topic
+- If no significant news exists for a topic in the timeframe, note this briefly
+- Write no more than 5 stories`
+);
 fs.writeFileSync("./debug_topics.json", JSON.stringify(topicNews, null, 2), 'utf-8');
 tokenCount += topicNews.usage.total_tokens;
 requestCount++;
@@ -75,8 +114,10 @@ requestCount++;
 console.log("Reformatting response...");
 let topics = await reformatNews(topicNews.choices[0].message.content);
 
-console.log("Filtering response...");
-topics = await filterUnrelatedTopics(topics, TOPICS);
+if (Array.isArray(topics)) {
+  console.log("Filtering response...");
+  topics = await filterUnrelatedTopics(topics, TOPICS);
+}
 
 await sleep(1000); // Brave's API limits to 2 requests per second. Sleeping after every request to be safe.
 
@@ -86,7 +127,20 @@ console.log("\n== STOCKS ==");
 console.log("Querying Brave's Search API...");
 const financeNews = DEBUG
   ? JSON.parse(fs.readFileSync('./debug_finances.json', 'utf-8'))
-  : await promptAI(BRAVE_API_KEY, `Summarize any news that occurred in the past 24 hours related to the following stocks or any related stocks, giving each a brief title followed by a 3-8 sentence summary: ${STOCKS}`);
+  : await promptAI(BRAVE_API_KEY,
+`Task: Summarize recent news (past 24 hours) for the following stocks/assets.
+
+Stocks: ${STOCK_TOPICS}
+
+Requirements:
+- Only include developments from the past 24 hours
+- Provide balanced coverage across all stocks (no single stock should dominate)
+- For each news item, format as:
+  * Brief descriptive title
+  * 5-8 sentence summary covering key details
+- If no significant news exists for a topic in the timeframe, note this briefly
+- Include news about the companies themselves or closely related entities`
+);
 fs.writeFileSync("./debug_finances.json", JSON.stringify(financeNews, null, 2), 'utf-8');
 tokenCount += financeNews.usage.total_tokens;
 requestCount++;

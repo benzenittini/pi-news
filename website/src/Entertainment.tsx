@@ -1,5 +1,5 @@
 import './App.css';
-import type { ArticleType } from './components/Article';
+import type { ArticleError, ArticleType } from './components/Article';
 import ColumnLayout from './components/ColumnLayout';
 import './Entertainment.css';
 
@@ -12,7 +12,7 @@ export type WotD = {
 type Props = {
   jotd: string;
   wotd: WotD;
-  articles: ArticleType[];
+  articles: ArticleType[] | ArticleError;
 };
 
 function Entertainment({ jotd, wotd, articles }: Props) {
